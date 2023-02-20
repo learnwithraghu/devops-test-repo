@@ -1,21 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld-gke
+  name: gcp-devops-gke
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello
+      app: gcp
   template:
     metadata:
       labels:
-        app: hello
+        app: gcp
     spec:
       containers:
-      - name: hello-app
+      - name: gcp-devops-gke
         image: gcr.io/kodekloud-gcp-training/test-gcpdevops:latest
-        # image: $LOCATION-docker.pkg.dev/$GCLOUD_PROJECT/hello-repo/helloworld-gke:latest
         ports:
         - containerPort: 5000
         env:
@@ -25,7 +24,7 @@ spec:
 apiVersion: "v1"
 kind: "Service"
 metadata:
-  name: "helloworld-gke-service"
+  name: "gcp-devops-gke-service"
   namespace: "default"
   labels:
     app.kubernetes.io/managed-by: "gcp-cloud-build-deploy"
